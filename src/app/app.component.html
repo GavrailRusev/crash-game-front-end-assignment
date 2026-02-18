@@ -1,0 +1,53 @@
+<div class="page-shell">
+  <div class="game-panel">
+    <div class="grid">
+      <div class="game-panel__header">
+        <h1>Crash Game</h1>
+      </div>
+      <div class="card">
+        <p class="label">Network connection</p>
+        <p class="value">{{ connection() }}</p>
+        @if (connection() === "disconnected") {
+          <button class="action-button" type="button" (click)="connect()">
+            Connect
+          </button>
+        }
+      </div>
+
+      <div class="card card--multiplier">
+        <p class="label">Multiplier</p>
+        <p class="value">{{ multiplier() }}</p>
+      </div>
+
+      <div class="card">
+        <p class="label">Round Status</p>
+        <p class="value">{{ roundStateLabel() }}</p>
+      </div>
+
+      <div class="card">
+        <p class="label">Balance</p>
+        <p class="value">{{ balance() }}</p>
+      </div>
+
+      <div class="card">
+        <p class="label">Action Status</p>
+        <p class="value">{{ actionStatusLabel() }}</p>
+      </div>
+    </div>
+
+    <div class="round-info-row">
+      <span
+        >{{ betResultLable() }} {{ betResultLable() && earnedOrLost() }}</span
+      >
+    </div>
+
+    <button
+      class="action-button"
+      type="button"
+      [disabled]="buttonText() === 'Wait' || isDisconnected()"
+      (click)="action()"
+    >
+      {{ buttonText() }}
+    </button>
+  </div>
+</div>
